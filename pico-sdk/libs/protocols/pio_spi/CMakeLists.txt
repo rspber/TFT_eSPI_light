@@ -1,0 +1,12 @@
+add_library(pio_spi INTERFACE)
+
+target_include_directories(pio_spi INTERFACE ${CMAKE_CURRENT_LIST_DIR}/../../../../protocols/pio_spi)
+
+target_sources(pio_spi INTERFACE
+  ${CMAKE_CURRENT_LIST_DIR}/../../../../protocols/pio_spi/RP2040_TFT_PIO_SPI_WRITE.cpp
+)
+
+target_link_libraries(pio_spi INTERFACE
+  hardware_pio
+  tft
+)

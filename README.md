@@ -29,10 +29,13 @@ and is equivalent to the appropriate TFT_eSPI version.
    their equivalents,
 
 6. SPI read/write and PIO SPI in write mode are available,
+   in my tests, PIO SPI flickers on ILI9341 under pico-sdk, better goes on ST7789,
+   in Arduino goes fine,
 
 7. Read and write protocols are separated, so it is possible to write by PIO and read
    and touch by SPI on the same rail, this is done by automatic protocol switching,
    currently, switching between protocols shows more stability under Arduino,
+   maybe it is caused my version of pico-sdk,
 
 8. Parallel protocols (16BIT and 8BIT) are not implemented yet,
 

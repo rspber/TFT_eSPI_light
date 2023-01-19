@@ -25,6 +25,7 @@ add_subdirectory(libs/gfx)
 add_subdirectory(libs/tft)
 add_subdirectory(libs/protocols/spi) 
 add_subdirectory(libs/protocols/pio_spi)
+add_subdirectory(libs/xpt2046)
 add_subdirectory(libs/TFT_eSPI)
 
 add_subdirectory(examples/320x240/TFT_Clock)

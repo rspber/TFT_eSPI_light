@@ -8,4 +8,5 @@ target_sources(TFT_eSPI INTERFACE
 
 target_link_libraries(TFT_eSPI INTERFACE
   setup
+  xpt2046
 )

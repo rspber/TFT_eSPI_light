@@ -132,7 +132,7 @@ and is equivalent to the appropriate TFT_eSPI version.
   ```
   //#define OVERLAID
   ```
-  so as not to definitely stop a running program.
+    so as not to definitely stop a running program.
 
 ## Notes
 

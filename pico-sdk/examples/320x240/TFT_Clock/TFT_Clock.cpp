@@ -148,6 +148,8 @@ static uint8_t conv2d(const char* p) {
 
 int main() {
 
+  stdio_init_all();
+
   setup();
 
   while(true) {

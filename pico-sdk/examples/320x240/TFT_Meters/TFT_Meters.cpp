@@ -301,6 +301,8 @@ void plotPointer(void)
 
 int main() {
 
+  stdio_init_all();
+
   setup();
 
   while(true) {

@@ -94,6 +94,8 @@ unsigned int rainbow(int value)
 
 int main() {
 
+  stdio_init_all();
+
   setup();
 
   while(true) {

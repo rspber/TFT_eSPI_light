@@ -145,3 +145,5 @@ and is equivalent to the appropriate TFT_eSPI version.
 3. It is possible to switch all color transmission to 666 colors,
 
 4. Function fillRectGradient from TFT_Write takes percentage parameter,
+
+5. Overlaid - floating objects.

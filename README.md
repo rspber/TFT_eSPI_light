@@ -79,7 +79,7 @@ and is equivalent to the appropriate TFT_eSPI version.
     #define Display TFT_eSPI
     #define display tft
   ```
-  ,    it matches to the
+  ,    it covers the
   ```
     TFT_eSPI tft;
   ```

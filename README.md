@@ -67,7 +67,7 @@ and is equivalent to the appropriate TFT_eSPI version.
 
 ## About Display.h
 
-1. Display.h provides information about which class is on the top of he TFT_Stack.
+1. Display.h provides information about which class is on the top of the TFT_Stack.
 
 2. In tsdesktop Display.h is in media directory and consists of:
   ```

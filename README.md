@@ -29,13 +29,9 @@ and is equivalent to the appropriate TFT_eSPI version.
    their equivalents,
 
 6. SPI read/write and PIO SPI in write mode are available,
-   in my tests, PIO SPI flickers on ILI9341 under pico-sdk, better goes on ST7789,
-   in Arduino goes fine,
 
 7. Read and write protocols are separated, so it is possible to write by PIO and read
    and touch by SPI on the same rail, this is done by automatic protocol switching,
-   currently, switching between protocols shows more stability under Arduino,
-   maybe it is caused my version of pico-sdk,
 
 8. Parallel protocols (16BIT and 8BIT) are not implemented yet,
 
@@ -76,7 +72,7 @@ and is equivalent to the appropriate TFT_eSPI version.
 
 ## About Display.h
 
-1. Display.h provides information about what class is on top of TFT_Stack.
+1. Display.h provides information about which class is on the top of he TFT_Stack.
 
 2. In tsdesktop Display.h is in media directory and consists of:
   ```
@@ -151,6 +147,6 @@ and is equivalent to the appropriate TFT_eSPI version.
 
 2. All suitable examples should works, in Arduino and pico-sdk,
 
-3. It is possibility to switch all color transmission to 666 colors,
+3. It is possible to switch all color transmission to 666 colors,
 
 4. Function fillRectGradient from TFT_Write takes percentage parameter,

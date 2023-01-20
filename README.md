@@ -55,18 +55,13 @@ and is equivalent to the appropriate TFT_eSPI version.
 
 2. ```Download``` or ```clone``` https://github.com/rspber/tsdesktop
 
-3. For pico-sdk: (notes for pico-sdk and Arduino in all cases should be read)
+3. Resolve links to the tsdesktop directories,
 
-* In linux: make symbolic links from this repository to tsdesktop in main directry linking:
-  ctx, tft, drivers, protocols, tsdesktop/pico-sdk/setup can be linked or copied,
-  and for all of this, all can be copied too,
+4. For pico-sdk:
 
 * In VSCODE select pico-sdk folder and that's all.
 
-4. For Arduino:
-
-* All directories mentioned in the point for pico-sdk should be placed in arduino libraries,
-  setup should be taken from tsdesktop/Arduino/libraries/TSD_Setup
+5. For Arduino:
 
 * Read further about Display.h.
 

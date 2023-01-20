@@ -17,7 +17,7 @@ TFT_eSPI tft = TFT_eSPI();       // Invoke custom library
 
 #define TFT_GREY 0x5AEB
 
-#define LOOP_PERIOD 35 // Display updates every 35 ms
+#define LOOP_PERIOD  5 // Display updates every 35 ms
 
 float ltx = 0;    // Saved x coord of bottom of needle
 uint16_t osx = 120, osy = 120; // Saved x & y coords

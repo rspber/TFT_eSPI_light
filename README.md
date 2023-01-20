@@ -101,7 +101,7 @@ and is equivalent to the appropriate TFT_eSPI version.
 2. The color carrier in all cases is rgb_t, which is defined as uint32_t,
    but this knowledge should not be used.
 
-3. However, the color is stored in three lower bytes, looking from the top: R, G, B,
+3. However, the color is stored in three lowest bytes, looking from the top: R, G, B,
    this knowledge can be used.
 
 4. The transformation of the color to the bus conditions takes place only at the end

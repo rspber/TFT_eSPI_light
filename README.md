@@ -79,11 +79,11 @@ and is equivalent to the appropriate TFT_eSPI version.
   #define Display TFT_eSPI
   #define display tft
   ```
-  . it matches to the
+  ,    it matches to the
   ```
   TFT_eSPI tft;
   ```
-  . in examples.
+  ,    in examples.
 
 ## About colors
 
@@ -126,7 +126,7 @@ and is equivalent to the appropriate TFT_eSPI version.
   ```
   //#define OVERLAID
   ```
-  . so as not to definitely stop a running program.
+  \    so as not to definitely stop a running program.
 
 ## Notes
 

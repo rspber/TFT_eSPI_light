@@ -100,7 +100,7 @@ and is equivalent to the appropriate TFT_eSPI version.
     rgb_t    alphaBlend(uint8_t alpha, rgb_t fgc, rgb_t bgc, uint8_t dither = 0);
   ```
 
-2. The color carrier is rgb, which is defined as uint32_t, but this knowledge should be
+2. The color carrier is rgb_t, which is defined as uint32_t, but this knowledge should be
    used responsibly.
 
 3. However, the color is stored in three lowest bytes, looking from the top: R, G, B,

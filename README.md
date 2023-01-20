@@ -6,9 +6,9 @@ TFT_eSPI clone
 It is not the intention of this site to develop the TFT_aSPI library.
 TFT_eSPI_light is and will remain a 100% compatible clone of the TFT_eSPI library.
 The library version number is in the TFT_eSPI.cpp and currently is:
-```
-  #define TFT_ESPI_VERSION "2.4.79"
-```
+  ```
+    #define TFT_ESPI_VERSION "2.4.79"
+  ```
 and is equivalent to the appropriate TFT_eSPI version.
 
 ## What is the difference between TFT_eSPI_light and TFT_eSPI
@@ -44,7 +44,7 @@ and is equivalent to the appropriate TFT_eSPI version.
 11. String type is not supported in all functionality due to sticking with Arduino but also
     due to uselessness with hardcore software, of the String type only remained:
     ```
-    typedef const char* String
+      typedef const char* String
     ```
 
 12. Currently, TFT_eSPI_light runs in Arduino and pico-sdk on RP2040 ONLY.
@@ -71,17 +71,17 @@ and is equivalent to the appropriate TFT_eSPI version.
 
 2. In tsdesktop Display.h is in media directory and consists of:
   ```
-  #define Display TFT_DRIVER
+    #define Display TFT_DRIVER
   ```
 3. In TFT_eSPI_light this file should be invisible, or even all the media directory,
   the Driver.h is in the TFT_eSPI subdirectory and consists of:
   ```
-  #define Display TFT_eSPI
-  #define display tft
+    #define Display TFT_eSPI
+    #define display tft
   ```
   ,    it matches to the
   ```
-  TFT_eSPI tft;
+    TFT_eSPI tft;
   ```
   ,    in examples.
 
@@ -89,13 +89,13 @@ and is equivalent to the appropriate TFT_eSPI version.
 
 1. All colors should come from a macro:
   ```
-  RGB(R,G,B)
+    RGB(R,G,B)
   ```
   . or from the procedures intended for this purpose:
   ```
-  rgb_t    rgb(uint16_t color565);           // from rgb.h
-  rgb_t    color16to24(uint16_t color565);   // from TFT_eSPI
-  rgb_t    alphaBlend(uint8_t alpha, rgb_t fgc, rgb_t bgc, uint8_t dither = 0);
+    rgb_t    rgb(uint16_t color565);           // from rgb.h
+    rgb_t    color16to24(uint16_t color565);   // from TFT_eSPI
+    rgb_t    alphaBlend(uint8_t alpha, rgb_t fgc, rgb_t bgc, uint8_t dither = 0);
   ```
 
 2. The color carrier in all cases is rgb_t, which is defined as uint32_t,
@@ -114,19 +114,19 @@ and is equivalent to the appropriate TFT_eSPI version.
    are themselves responsible for converting the colors to rgb_t or use the appropriate
    function to transport a color of that type, they are:
   ```
-           // Write a solid block of a single colour
-  void     pushBlock(uint16_t color, int32_t len);
+             // Write a solid block of a single colour
+    void     pushBlock(uint16_t color, int32_t len);
 
-           // Write a set of pixels stored in memory,
-           // use setSwapBytes(true/false) function to correct endianess
-  void     pushPixels(const uint16_t* data_in, int32_t len);
+             // Write a set of pixels stored in memory,
+             // use setSwapBytes(true/false) function to correct endianess
+    void     pushPixels(const uint16_t* data_in, int32_t len);
   ```
 7. If we are not 100% sure that all colors come from the correct source, it is necessary
    to comment out in Setup.h:
   ```
-  //#define OVERLAID
+    //#define OVERLAID
   ```
-  \    so as not to definitely stop a running program.
+  ,    so as not to definitely stop a running program.
 
 ## Notes
 

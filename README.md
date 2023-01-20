@@ -98,11 +98,11 @@ and is equivalent to the appropriate TFT_eSPI version.
     rgb_t    alphaBlend(uint8_t alpha, rgb_t fgc, rgb_t bgc, uint8_t dither = 0);
   ```
 
-2. The color carrier in all cases is rgb_t, which is defined as uint32_t,
-   but this knowledge should not be used.
+2. The color carrier is rgb, which is defined as uint32_t, but this knowledge should be
+   used responsibly.
 
 3. However, the color is stored in three lowest bytes, looking from the top: R, G, B,
-   this knowledge can be used.
+   this knowledge can be used with no restrictions.
 
 4. The transformation of the color to the bus conditions takes place only at the end
    of the path to the display and is performed in the writeColor procedure.

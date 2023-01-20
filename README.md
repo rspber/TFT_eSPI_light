@@ -32,6 +32,8 @@ and is equivalent to the appropriate TFT_eSPI version.
 
 7. Read and write protocols are separated, so it is possible to write by PIO and read
    and touch by SPI on the same rail, this is done by automatic protocol switching,
+   it is true that with OVERLAID it generates some streaks on the screen,
+   but this is not a reason to hold the premiere.
 
 8. Parallel protocols (16BIT and 8BIT) are not implemented yet,
 

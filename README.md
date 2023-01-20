@@ -3,7 +3,7 @@ TFT_eSPI clone
 
 ## Introduction
 
-It is not the intention of this site to develop the TFT_aSPI library.
+It is not the intention of this site to develop the TFT_eSPI library.
 TFT_eSPI_light is and will remain a 100% compatible clone of the TFT_eSPI library.
 The library version number is in the TFT_eSPI.cpp and currently is:
   ```

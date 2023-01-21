@@ -220,7 +220,7 @@ bool  TFT_eSPI::getViewportDatum(void)
 ** Function name:           frameViewport
 ** Description:             Draw a frame inside or outside the viewport of width w
 ***************************************************************************************/
-void TFT_eSPI::frameViewport(uint16_t color, int32_t w)
+void TFT_eSPI::frameViewport(rgb_t color, int32_t w)
 {
   // Save datum position
   bool _dT = _vpDatum;
@@ -1084,7 +1084,7 @@ bool TFT_eSPI::getSwapBytes(void)
 ** Function name:           drawBitmap
 ** Description:             Draw an image stored in an array on the TFT
 ***************************************************************************************/
-void TFT_eSPI::drawBitmap(int16_t x, int16_t y, const uint8_t *bitmap, int16_t w, int16_t h, uint16_t color)
+void TFT_eSPI::drawBitmap(int16_t x, int16_t y, const uint8_t *bitmap, int16_t w, int16_t h, rgb_t color)
 {
   int32_t i, j, byteWidth = (w + 7) / 8;
 
@@ -1102,7 +1102,7 @@ void TFT_eSPI::drawBitmap(int16_t x, int16_t y, const uint8_t *bitmap, int16_t w
 ** Function name:           drawBitmap
 ** Description:             Draw an image stored in an array on the TFT
 ***************************************************************************************/
-void TFT_eSPI::drawBitmap(int16_t x, int16_t y, const uint8_t *bitmap, int16_t w, int16_t h, uint16_t fgcolor, uint16_t bgcolor)
+void TFT_eSPI::drawBitmap(int16_t x, int16_t y, const uint8_t *bitmap, int16_t w, int16_t h, rgb_t fgcolor, rgb_t bgcolor)
 {
   int32_t i, j, byteWidth = (w + 7) / 8;
 
@@ -1119,7 +1119,7 @@ void TFT_eSPI::drawBitmap(int16_t x, int16_t y, const uint8_t *bitmap, int16_t w
 ** Function name:           drawXBitmap
 ** Description:             Draw an image stored in an XBM array onto the TFT
 ***************************************************************************************/
-void TFT_eSPI::drawXBitmap(int16_t x, int16_t y, const uint8_t *bitmap, int16_t w, int16_t h, uint16_t color)
+void TFT_eSPI::drawXBitmap(int16_t x, int16_t y, const uint8_t *bitmap, int16_t w, int16_t h, rgb_t color)
 {
   int32_t i, j, byteWidth = (w + 7) / 8;
 
@@ -1137,7 +1137,7 @@ void TFT_eSPI::drawXBitmap(int16_t x, int16_t y, const uint8_t *bitmap, int16_t 
 ** Function name:           drawXBitmap
 ** Description:             Draw an XBM image with foreground and background colors
 ***************************************************************************************/
-void TFT_eSPI::drawXBitmap(int16_t x, int16_t y, const uint8_t *bitmap, int16_t w, int16_t h, uint16_t color, uint16_t bgcolor)
+void TFT_eSPI::drawXBitmap(int16_t x, int16_t y, const uint8_t *bitmap, int16_t w, int16_t h, rgb_t color, rgb_t bgcolor)
 {
   int32_t i, j, byteWidth = (w + 7) / 8;
 
@@ -1266,7 +1266,7 @@ int16_t TFT_eSPI::getPivotY(void)
 ** Function name:           setBitmapColor
 ** Description:             Set the foreground foreground and background colour
 ***************************************************************************************/
-void TFT_eSPI::setBitmapColor(uint16_t c, uint16_t b)
+void TFT_eSPI::setBitmapColor(rgb_t c, rgb_t b)
 {
   if (c == b) b = ~c;
   bitmap_fg = c;

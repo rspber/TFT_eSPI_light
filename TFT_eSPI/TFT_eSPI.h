@@ -385,7 +385,7 @@ class TFT_eSPI : public TFT_DRIVER { friend class TFT_eSprite; // Sprite class h
   int32_t  getViewportWidth(void);
   int32_t  getViewportHeight(void);
   bool     getViewportDatum(void);
-  void     frameViewport(uint16_t color, int32_t w);
+  void     frameViewport(rgb_t color, int32_t w);
   void     resetViewport(void);
 
            // Clip input window to viewport bounds, return false if whole area is out of bounds
@@ -430,11 +430,11 @@ class TFT_eSPI : public TFT_DRIVER { friend class TFT_eSprite; // Sprite class h
   bool     getSwapBytes(void);
 
            // Draw bitmap
-  void     drawBitmap( int16_t x, int16_t y, const uint8_t *bitmap, int16_t w, int16_t h, uint16_t fgcolor),
-           drawBitmap( int16_t x, int16_t y, const uint8_t *bitmap, int16_t w, int16_t h, uint16_t fgcolor, uint16_t bgcolor),
-           drawXBitmap(int16_t x, int16_t y, const uint8_t *bitmap, int16_t w, int16_t h, uint16_t fgcolor),
-           drawXBitmap(int16_t x, int16_t y, const uint8_t *bitmap, int16_t w, int16_t h, uint16_t fgcolor, uint16_t bgcolor),
-           setBitmapColor(uint16_t fgcolor, uint16_t bgcolor); // Define the 2 colours for 1bpp sprites
+  void     drawBitmap( int16_t x, int16_t y, const uint8_t *bitmap, int16_t w, int16_t h, rgb_t fgcolor),
+           drawBitmap( int16_t x, int16_t y, const uint8_t *bitmap, int16_t w, int16_t h, rgb_t fgcolor, rgb_t bgcolor),
+           drawXBitmap(int16_t x, int16_t y, const uint8_t *bitmap, int16_t w, int16_t h, rgb_t fgcolor),
+           drawXBitmap(int16_t x, int16_t y, const uint8_t *bitmap, int16_t w, int16_t h, rgb_t fgcolor, rgb_t bgcolor),
+           setBitmapColor(rgb_t fgcolor, rgb_t bgcolor); // Define the 2 colours for 1bpp sprites
 
            // Set TFT pivot point (use when rendering rotated sprites)
   void     setPivot(int16_t x, int16_t y);

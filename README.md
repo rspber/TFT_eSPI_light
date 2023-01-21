@@ -5,7 +5,7 @@ TFT_eSPI clone
 
 It is not the intention of this site to develop the TFT_eSPI library.
 TFT_eSPI_light is and will remain a 100% compatible clone of the TFT_eSPI library.
-The library version number is in the TFT_eSPI.cpp and currently is:
+The library version number is in the TFT_eSPI.h and currently is:
   ```
     #define TFT_ESPI_VERSION "2.4.79"
   ```

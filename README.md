@@ -41,7 +41,7 @@ and is equivalent to the appropriate TFT_eSPI version.
    but as an internal implementation of startWrite and endWrite and not as separate entries,
 
 10. GFXFF font is unavaiable due to collision with the GFXGlyph type redefined in tsdesktop,
-   but are available by drawChar and drawText from SCREEN class available by inhertance too,
+   but is available by drawChar and drawText from SCREEN class available by inhertance too,
 
 11. String type is not supported in all functionality due to sticking with Arduino but also
     due to uselessness with hardcore software, of the String type only remained:

@@ -76,7 +76,7 @@ and is equivalent to the appropriate TFT_eSPI version.
     #define Display TFT_DRIVER
   ```
 3. In TFT_eSPI_light this file should be invisible, or even all the media directory,
-  the Driver.h is in the TFT_eSPI subdirectory and consists of:
+  the Display.h is in the TFT_eSPI subdirectory and consists of:
   ```
     #define Display TFT_eSPI
     #define display tft

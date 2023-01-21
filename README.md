@@ -112,7 +112,7 @@ and is equivalent to the appropriate TFT_eSPI version.
 5. It's similar with reading color from display by readPixel, regardless of transport type,
    rgb_t will always be returned.
 
-6. The pushImage or drawBitmap procedures and similar, which takes colors as uint16_t
+6. The pushImage procedures and similar, which takes colors as uint16_t
    are themselves responsible for converting the colors to rgb_t or using the appropriate
    functions to carying a color of that type, they are:
   ```

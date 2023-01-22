@@ -142,7 +142,7 @@ and is equivalent to the appropriate TFT_eSPI version.
 1. You can easily and transparently add new protocols and modify the existing ones,
    drivers too,
 
-2. All suitable examples should works, in Arduino and pico-sdk,
+2. All relevant examples should work, in Arduino and pico-sdk,
 
 3. It is possible to switch all color transmission to 666 colors,
 

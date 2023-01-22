@@ -10,7 +10,7 @@
   parallel protocols are not implemented yet,
   GFXFF font is unavaiable due to collision with the
   GFXGlyph type redefined in tsdesktop,
-  all suitable examples should work,
+  all relevant examples should work,
 
   currently
   runs in Arduino and pico-sdk on RP2040 ONLY.

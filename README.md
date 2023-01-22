@@ -17,13 +17,13 @@ and is equivalent to the appropriate TFT_eSPI version.
    like drawPixel or readPixel,
 
 2. Already implemented protocols and drivers are provided by TFT_Stack from tsdesktop,
-   TFT_Stack consists of directories: ctx, tft, drivers and protocols,
+   TFT_Stack consists of directories: gfx, tft, drivers and protocols,
    setup is also part of it,
 
 3. Standard graphics routines were moved (or already exists there) to the gfx class,
    but are still available due to the inheritance hierarchy,
 
-4. This makes the ctx library 100% compatible with TFT_eSPI,
+4. This makes the gfx library 100% compatible with TFT_eSPI,
 
 5. The print and println are not supported (for many reasons), you can always write
    their equivalents,

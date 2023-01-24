@@ -85,7 +85,10 @@ and is equivalent to the appropriate TFT_eSPI version.
   ```
     TFT_eSPI tft;
   ```
-  ,    to Display display.
+  ,    to
+  ```
+    Display display;
+  ```
 
 ## About colors
 

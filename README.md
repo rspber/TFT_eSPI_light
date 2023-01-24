@@ -81,11 +81,11 @@ and is equivalent to the appropriate TFT_eSPI version.
     #define Display TFT_eSPI
     #define display tft
   ```
-  ,    it covers the
+  ,    in examples it treats the
   ```
     TFT_eSPI tft;
   ```
-  ,    in examples.
+  ,    as Display display.
 
 ## About colors
 

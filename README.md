@@ -117,7 +117,7 @@ and is equivalent to the appropriate TFT_eSPI version.
 
 6. The pushImage procedures and similar, which takes colors as uint16_t
    are themselves responsible for converting the colors to rgb_t or using the appropriate
-   functions to carying a color of that type, they are:
+   functions to display color of that type, they are:
   ```
              // Write a solid block of a single colour
     void     pushBlock(uint16_t color, int32_t len);

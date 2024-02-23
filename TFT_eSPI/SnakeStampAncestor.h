@@ -1,12 +1,12 @@
 /*
   SnakeStampAncestor
 
-  Copyright (c) 2023, rspber (https://github.com/rspber)
+  Copyright (c) 2023-2024, rspber (https://github.com/rspber)
 
 */
 
 #pragma once
 
-#include <TFT_DRIVER.h>
+#include <TFT_SCREEN.h>
 
-#define SnakeStampAncestor TFT_DRIVER
+#define SnakeStampAncestor TFT_SCREEN

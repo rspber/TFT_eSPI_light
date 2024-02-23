@@ -27,8 +27,7 @@ and is equivalent to the appropriate TFT_eSPI version.
    like drawPixel or readPixel.
 
 2. Already implemented protocols and drivers are provided by TFT_Stack from tsdesktop,
-   TFT_Stack consists of directories: gfx, tft, drivers and protocols,
-   setup and env are also part of it.
+   TFT_Stack consists of directories: gfx, tft, and protocols, setup and env are also part of it.
 
 3. Parallel 8 bit: PIO write, GPIO read/write, SPI: read/write, PIO read/write are available.
 
@@ -64,7 +63,7 @@ and is equivalent to the appropriate TFT_eSPI version.
 
 2. In tsdesktop Display.h is in media directory and consists of:
   ```
-    #define Display TFT_DRIVER
+    #define Display TFT_SCREEN
   ```
 3. In TFT_eSPI_light this file should be invisible, or even all the media directory,
   the Display.h is in the TFT_eSPI subdirectory and consists of:

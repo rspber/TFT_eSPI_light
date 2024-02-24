@@ -20,7 +20,7 @@ void setup()
   //randomSeed(analogRead(A0));
 //  Serial.println();
   // Setup the LCD
-  tft.begin();
+  tft.init();
   tft.setRotation(3);
 }
 

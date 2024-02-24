@@ -36,7 +36,7 @@ uint8_t hh=conv2d(__TIME__), mm=conv2d(__TIME__+3), ss=conv2d(__TIME__+6);  // G
 bool initial = 1;
 
 void setup(void) {
-  tft.begin();
+  tft.init();
   tft.setRotation(0);
 
   //tft.fillScreen(TFT_BLACK);

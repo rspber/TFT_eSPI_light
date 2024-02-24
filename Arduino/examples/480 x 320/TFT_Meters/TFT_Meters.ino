@@ -31,7 +31,7 @@ int old_value[6] = { -1, -1, -1, -1, -1, -1};
 int d = 0;
 
 void setup(void) {
-  tft.begin();
+  tft.init();
   tft.setRotation(1);
   Serial.begin(57600); // For debug
   tft.fillScreen(TFT_BLACK);

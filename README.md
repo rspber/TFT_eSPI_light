@@ -122,9 +122,7 @@ and is equivalent to the appropriate TFT_eSPI version.
 
 ## Notes
 
-1. In examples you shoud use ```tft.begin()``` instead of ```tft.init()```.
-
-2. Some examples have been adapted to TFT_eSPI_light and have been placed in the example directory.
+1. Some examples have been adapted to TFT_eSPI_light and have been placed in the example directory.
 
    https://youtube.com/shorts/iBeVsZnV1LM
 

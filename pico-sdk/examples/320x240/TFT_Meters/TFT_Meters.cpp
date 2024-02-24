@@ -42,7 +42,7 @@ void setup(void) {
 //  set_sys_clock_khz(133000000 / 1000, true);
 //  set_sys_clock_khz(160000000 / 1000, true);
   
-  tft.begin();
+  tft.init();
   tft.setRotation(0);
 //  Serial.begin(57600); // For debug
   tft.fillScreen(TFT_BLACK);

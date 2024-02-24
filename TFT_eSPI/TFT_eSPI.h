@@ -261,7 +261,7 @@ static const uint16_t default_4bit_palette[] PROGMEM = {
 **                         Section 7: Diagnostic support
 ***************************************************************************************/
 // #define TFT_eSPI_DEBUG     // Switch on debug support serial messages  (not used yet)
-// #define TFT_eSPI_FNx_DEBUG // Switch on debug support for function "x" (not used yet)
+// #define TFT_eSPI_FNx_DEBUG // Switch on debug support for function _dwidth, _dheight"x" (not used yet)
 
 // This structure allows sketches to retrieve the user setup parameters at runtime
 // by calling getSetup(), zero impact on code size unless used, mainly for diagnostics
@@ -334,7 +334,7 @@ class TFT_eSPI : public SnakeStamp { friend class TFT_eSprite; // Sprite class h
 
   TFT_eSPI();
 
-  // in examples, init() must be renamed to begin()
+  void init() { begin(); }
 
   virtual void
                    drawChar(int32_t x, int32_t y, uint16_t c, rgb_t color, rgb_t bg, uint8_t size),

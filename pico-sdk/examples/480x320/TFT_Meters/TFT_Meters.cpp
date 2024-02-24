@@ -36,7 +36,7 @@ void plotLinear(const char *label, int x, int y);
 void plotPointer(void);
 
 void setup(void) {
-  tft.begin();
+  tft.init();
   tft.setRotation(1);
 //  Serial.begin(57600); // For debug
   tft.fillScreen(TFT_BLACK);

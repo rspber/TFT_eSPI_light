@@ -1,9 +1,10 @@
+<!--
 <p dir="auto">
   <a href="https://github.com/vshymanskyy/StandWithUkraine/blob/main/docs/README.md">
     <img src="https://raw.githubusercontent.com/vshymanskyy/StandWithUkraine/main/banner-direct.svg" alt="SWUbanner" style="max-width: 100%;">
   </a>
 </p>
-
+-->
 # TFT_eSPI_light
 TFT_eSPI clone
 

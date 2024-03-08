@@ -5,9 +5,6 @@
 
   TFT_eSPI class without drivers and protocols.
 
-  Currently
-  runs in Arduino and pico-sdk on RP2040 ONLY.
-
   Bodmer's license in /licenses/Bodmer_license.txt
 
   originally notes below:

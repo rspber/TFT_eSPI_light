@@ -11,7 +11,7 @@
 */
 
 /***************************************************
-  Arduino TFT graphics library targeted at 32 bit
+  Arduino TFT graphics library targeted at 32-bit
   processors such as ESP32, ESP8266 and STM32.
 
   This is a stand-alone library that contains the
@@ -409,7 +409,7 @@ TFT_eSPI::TFT_eSPI() : SnakeStamp()
   inTransaction = false;   // Flag to prevent multiple sequential functions to keep bus access open
   lockTransaction = false; // start/endWrite lock flag to allow sketch to keep SPI bus access open
 
-  _cp437    = true;     // Legacy GLCD font bug fix
+  _cp437    = false;    // Legacy GLCD font bug fix disabled by default
   _utf8     = true;     // UTF8 decoding enabled
 
 #if defined (FONT_FS_AVAILABLE) && defined (SMOOTH_FONT)
@@ -490,7 +490,7 @@ void TFT_eSPI::pushRect(int32_t x, int32_t y, int32_t w, int32_t h, uint16_t *da
 
 /***************************************************************************************
 ** Function name:           pushImage
-** Description:             plot 16 bit colour sprite or image onto TFT
+** Description:             plot 16-bit colour sprite or image onto TFT
 ***************************************************************************************/
 void TFT_eSPI::pushImage(int32_t x, int32_t y, int32_t w, int32_t h, uint16_t *data)
 {
@@ -520,7 +520,7 @@ void TFT_eSPI::pushImage(int32_t x, int32_t y, int32_t w, int32_t h, uint16_t *d
 
 /***************************************************************************************
 ** Function name:           pushImage
-** Description:             plot 16 bit sprite or image with 1 colour being transparent
+** Description:             plot 16-bit sprite or image with 1 colour being transparent
 ***************************************************************************************/
 void TFT_eSPI::pushImage(int32_t x, int32_t y, int32_t w, int32_t h, uint16_t *data, uint16_t transp)
 {
@@ -579,11 +579,11 @@ void TFT_eSPI::pushImage(int32_t x, int32_t y, int32_t w, int32_t h, uint16_t *d
 
 /***************************************************************************************
 ** Function name:           pushImage - for FLASH (PROGMEM) stored images
-** Description:             plot 16 bit image
+** Description:             plot 16-bit image
 ***************************************************************************************/
 void TFT_eSPI::pushImage(int32_t x, int32_t y, int32_t w, int32_t h, const uint16_t *data)
 {
-  // Requires 32 bit aligned access, so use PROGMEM 16 bit word functions
+  // Requires 32-bit aligned access, so use PROGMEM 16-bit word functions
   PI_CLIP;
 
   begin_tft_write();
@@ -609,11 +609,11 @@ void TFT_eSPI::pushImage(int32_t x, int32_t y, int32_t w, int32_t h, const uint1
 
 /***************************************************************************************
 ** Function name:           pushImage - for FLASH (PROGMEM) stored images
-** Description:             plot 16 bit image with 1 colour being transparent
+** Description:             plot 16-bit image with 1 colour being transparent
 ***************************************************************************************/
 void TFT_eSPI::pushImage(int32_t x, int32_t y, int32_t w, int32_t h, const uint16_t *data, uint16_t transp)
 {
-  // Requires 32 bit aligned access, so use PROGMEM 16 bit word functions
+  // Requires 32-bit aligned access, so use PROGMEM 16-bit word functions
   PI_CLIP;
 
   begin_tft_write();
@@ -665,7 +665,7 @@ void TFT_eSPI::pushImage(int32_t x, int32_t y, int32_t w, int32_t h, const uint1
 
 /***************************************************************************************
 ** Function name:           pushImage
-** Description:             plot 8 bit or 4 bit or 1 bit image or sprite using a line buffer
+** Description:             plot 8-bit or 4-bit or 1 bit image or sprite using a line buffer
 ***************************************************************************************/
 void TFT_eSPI::pushImage(int32_t x, int32_t y, int32_t w, int32_t h, const uint8_t *data, bool bpp8,  uint16_t *cmap)
 {
@@ -684,7 +684,7 @@ void TFT_eSPI::pushImage(int32_t x, int32_t y, int32_t w, int32_t h, const uint8
   {
     _swapBytes = false;
 
-    uint8_t  blue[] = {0, 11, 21, 31}; // blue 2 to 5 bit colour lookup table
+    uint8_t  blue[] = {0, 11, 21, 31}; // blue 2 to 5-bit colour lookup table
 
     _lastColor = -1; // Set to illegal value
 
@@ -798,7 +798,7 @@ void TFT_eSPI::pushImage(int32_t x, int32_t y, int32_t w, int32_t h, const uint8
 
 /***************************************************************************************
 ** Function name:           pushImage
-** Description:             plot 8 bit or 4 bit or 1 bit image or sprite using a line buffer
+** Description:             plot 8-bit or 4-bit or 1 bit image or sprite using a line buffer
 ***************************************************************************************/
 void TFT_eSPI::pushImage(int32_t x, int32_t y, int32_t w, int32_t h, uint8_t *data, bool bpp8,  uint16_t *cmap)
 {
@@ -817,7 +817,7 @@ void TFT_eSPI::pushImage(int32_t x, int32_t y, int32_t w, int32_t h, uint8_t *da
   {
     _swapBytes = false;
 
-    uint8_t  blue[] = {0, 11, 21, 31}; // blue 2 to 5 bit colour lookup table
+    uint8_t  blue[] = {0, 11, 21, 31}; // blue 2 to 5-bit colour lookup table
 
     _lastColor = -1; // Set to illegal value
 
@@ -950,7 +950,7 @@ void TFT_eSPI::pushImage(int32_t x, int32_t y, int32_t w, int32_t h, uint8_t *da
 
     data += dx + dy * w;
 
-    uint8_t  blue[] = {0, 11, 21, 31}; // blue 2 to 5 bit colour lookup table
+    uint8_t  blue[] = {0, 11, 21, 31}; // blue 2 to 5-bit colour lookup table
 
     _lastColor = -1; // Set to illegal value
 
@@ -1136,7 +1136,7 @@ void TFT_eSPI::pushImage(int32_t x, int32_t y, int32_t w, int32_t h, uint8_t *da
 
 /***************************************************************************************
 ** Function name:           pushMaskedImage
-** Description:             Render a 16 bit colour image with a 1bpp mask
+** Description:             Render a 16-bit colour image to TFT with a 1bpp mask
 ***************************************************************************************/
 // Can be used with a 16bpp sprite and a 1bpp sprite for the mask
 void TFT_eSPI::pushMaskedImage(int32_t x, int32_t y, int32_t w, int32_t h, uint16_t *img, uint8_t *mask)
@@ -1144,7 +1144,7 @@ void TFT_eSPI::pushMaskedImage(int32_t x, int32_t y, int32_t w, int32_t h, uint1
   if (_vpOoB || w < 1 || h < 1) return;
 
   // To simplify mask handling the window clipping is done by the pushImage function
-  // Each mask image line assumed to be padded to and integer number of bytes & padding bits are 0
+  // Each mask image line assumed to be padded to an integer number of bytes & padding bits are 0
 
   begin_tft_write();
   inTransaction = true;
@@ -1205,7 +1205,7 @@ void TFT_eSPI::pushMaskedImage(int32_t x, int32_t y, int32_t w, int32_t h, uint1
         xp += clearCount;
         clearCount = 0;
         pushImage(x + xp, y, setCount, 1, iptr + xp);      // pushImage handles clipping
-        //pushImageDMA(x + xp, y, setCount, 1, iptr + xp);
+        if (mptr >= eptr) break;
         xp += setCount;
       }
     } while (setCount || mptr < eptr);
@@ -1222,7 +1222,7 @@ void TFT_eSPI::pushMaskedImage(int32_t x, int32_t y, int32_t w, int32_t h, uint1
 
 /***************************************************************************************
 ** Function name:           setSwapBytes
-** Description:             Used by 16 bit pushImage() to swap byte order in colours
+** Description:             Used by 16-bit pushImage() to swap byte order in colours
 ***************************************************************************************/
 void TFT_eSPI::setSwapBytes(bool swap)
 {
@@ -1326,7 +1326,7 @@ void TFT_eSPI::drawCircleHelper( int32_t x0, int32_t y0, int32_t rr, uint8_t cor
   //begin_tft_write();          // Sprite class can use this function, avoiding begin_tft_write()
   inTransaction = true;
 
-  while (xe < rr--)
+  do
   {
     while (f < 0) {
       ++xe;
@@ -1372,7 +1372,8 @@ void TFT_eSPI::drawCircleHelper( int32_t x0, int32_t y0, int32_t rr, uint8_t cor
       }
     }
     xs = xe;
-  }
+  } while (xe < rr--);
+
   inTransaction = lockTransaction;
   end_tft_write();              // Does nothing if Sprite class uses this function
 }
@@ -1829,7 +1830,7 @@ void TFT_eSPI::setCursor(int16_t x, int16_t y)
 ***************************************************************************************/
 void TFT_eSPI::setCursor(int16_t x, int16_t y, uint8_t font)
 {
-  textfont = font;
+  setTextFont(font);
   cursor_x = x;
   cursor_y = y;
 }
@@ -2078,7 +2079,7 @@ int16_t TFT_eSPI::textWidth(const char *string, uint8_t font)
 
 /***************************************************************************************
 ** Function name:           fontsLoaded
-** Description:             return an encoded 16 bit value showing the fonts loaded
+** Description:             return an encoded 16-bit value showing the fonts loaded
 ***************************************************************************************/
 // Returns a value showing which fonts are loaded (bit N set =  Font N loaded)
 uint16_t TFT_eSPI::fontsLoaded(void)
@@ -2091,8 +2092,10 @@ uint16_t TFT_eSPI::fontsLoaded(void)
 ** Function name:           fontHeight
 ** Description:             return the height of a font (yAdvance for free fonts)
 ***************************************************************************************/
-int16_t TFT_eSPI::fontHeight(int16_t font)
+int16_t TFT_eSPI::fontHeight(uint8_t font)
 {
+  if (font > 8) return 0;
+
 #ifdef SMOOTH_FONT
   if(fontLoaded) return gFont.yAdvance;
 #endif
@@ -2120,11 +2123,10 @@ void TFT_eSPI::drawChar(int32_t x, int32_t y, uint16_t c, rgb_t color, rgb_t bg,
 {
   if (_vpOoB) return;
 
-  if (c < 32) return;
 #ifdef LOAD_GLCD
 //>>>>>>>>>>>>>>>>>>
   #ifdef LOAD_GFXFF
-  if(!gfxFont) { // 'Classic' built-in font
+  if(!gfxFont) { // 'Classic' built-in GLCD font
   #endif
 //>>>>>>>>>>>>>>>>>>
 
@@ -2137,6 +2139,9 @@ void TFT_eSPI::drawChar(int32_t x, int32_t y, uint16_t c, rgb_t color, rgb_t bg,
      ((yd + 8 * size - 1) < _vpY))    // Clip top
     return;
 
+  if (c > 255) return;
+  if (!_cp437 && c > 175) c++;
+
   bool fillbg = (bg != color);
   bool clip = xd < _vpX || xd + 6  * textsize >= _vpW || yd < _vpY || yd + 8 * textsize >= _vpH;
 
@@ -2147,7 +2152,7 @@ void TFT_eSPI::drawChar(int32_t x, int32_t y, uint16_t c, rgb_t color, rgb_t bg,
 
     setWindow(xd, yd, xd+5, yd+7);
 
-    for (int8_t i = 0; i < 5; i++ ) column[i] = pgm_read_byte(font + (c * 5) + i);
+    for (int8_t i = 0; i < 5; i++ ) column[i] = pgm_read_byte(&font[0] + (c * 5) + i);
     column[5] = 0;
 
     tft_startWriteColor();
@@ -2175,7 +2180,7 @@ void TFT_eSPI::drawChar(int32_t x, int32_t y, uint16_t c, rgb_t color, rgb_t bg,
       if (i == 5)
         line = 0x0;
       else
-        line = pgm_read_byte(font + (c * 5) + i);
+        line = pgm_read_byte(&font[0] + (c * 5) + i);
 
       if (size == 1 && !fillbg) { // default size
         for (int8_t j = 0; j < 8; j++) {
@@ -2365,7 +2370,7 @@ void TFT_eSPI::writeColor(rgb_t color, int32_t len)
 
 /***************************************************************************************
 ** Function name:           pushColors
-** Description:             push an array of pixels for 16 bit raw image drawing
+** Description:             push an array of pixels for 16-bit raw image drawing
 ***************************************************************************************/
 // Assumed that setAddrWindow() has previously been called
 // len is number of bytes, not pixels
@@ -2399,7 +2404,7 @@ void TFT_eSPI::pushColors(uint16_t *data, int32_t len, bool swap)
 ** Function name:           drawLine
 ** Description:             draw a line between 2 arbitrary points
 ***************************************************************************************/
-// Bresenham's algorithm - thx wikipedia - speed enhanced by Bodmer to use
+// Bresenham's algorithm - thx Wikipedia - speed enhanced by Bodmer to use
 // an efficient FastH/V Line draw routine for line segments of 2 pixels or more
 void TFT_eSPI::drawLine(int32_t x0, int32_t y0, int32_t x1, int32_t y1, rgb_t color)
 {
@@ -2551,7 +2556,7 @@ void TFT_eSPI::drawSmoothArc(int32_t x, int32_t y, int32_t r, int32_t ir, int32_
 ***************************************************************************************/
 // Compute the fixed point square root of an integer and
 // return the 8 MS bits of fractional part.
-// Quicker than sqrt() for processors that do not have and FPU (e.g. RP2040)
+// Quicker than sqrt() for processors that do not have an FPU (e.g. RP2040)
 inline uint8_t TFT_eSPI::sqrt_fraction(uint32_t num) {
   if (num > (0x40000000)) return 0;
   uint32_t bsh = 0x00004000;
@@ -2589,34 +2594,30 @@ void TFT_eSPI::drawArc(int32_t x, int32_t y, int32_t r, int32_t ir,
                        rgb_t fg_color, rgb_t bg_color,
                        bool smooth)
 {
-  if (endAngle < startAngle) {
-    // Arc sweeps through 6 o'clock so draw in two parts
-    drawArc(x, y, r, ir, startAngle, 360, fg_color, bg_color, smooth);
-    startAngle = 0;
-  }
-
+  if (endAngle   > 360)   endAngle = 360;
+  if (startAngle > 360) startAngle = 360;
   if (_vpOoB || startAngle == endAngle) return;
   if (r < ir) transpose(r, ir);  // Required that r > ir
   if (r <= 0 || ir < 0) return;  // Invalid r, ir can be zero (circle sector)
-  if (startAngle < 0) startAngle = 0;
-  if (endAngle > 360) endAngle = 360;
 
+  if (endAngle < startAngle) {
+    // Arc sweeps through 6 o'clock so draw in two parts
+    if (startAngle < 360) drawArc(x, y, r, ir, startAngle, 360, fg_color, bg_color, smooth);
+    if (endAngle == 0) return;
+    startAngle = 0;
+  }
   inTransaction = true;
 
-  int32_t xs = 0;       // x start position for quadrant scan
-  uint8_t alpha = 0;    // alpha value for blending pixels
+  int32_t xs = 0;        // x start position for quadrant scan
+  uint8_t alpha = 0;     // alpha value for blending pixels
 
   uint32_t r2 = r * r;   // Outer arc radius^2
-  if (smooth) r++;      // Outer AA zone radius
+  if (smooth) r++;       // Outer AA zone radius
   uint32_t r1 = r * r;   // Outer AA radius^2
-  int16_t w  = r - ir;  // Width of arc (r - ir + 1)
+  int16_t w  = r - ir;   // Width of arc (r - ir + 1)
   uint32_t r3 = ir * ir; // Inner arc radius^2
-  if (smooth) ir--;     // Inner AA zone radius
+  if (smooth) ir--;      // Inner AA zone radius
   uint32_t r4 = ir * ir; // Inner AA radius^2
-
-  // Float variants of adjusted inner and outer arc radii
-  //float irf = ir;
-  //float rf  = r;
 
   //     1 | 2
   //    ---¦---    Arc quadrant index
@@ -2633,7 +2634,7 @@ void TFT_eSPI::drawArc(int32_t x, int32_t y, int32_t r, int32_t ir,
   float fabssin = fabsf(sinf(startAngle * deg2rad));
 
   // U16.16 slope of arc start
-  uint32_t slope = (fabscos/(fabssin + minDivisor)) * (float)(1<<16);
+  uint32_t slope = (fabscos/(fabssin + minDivisor)) * (float)(1UL<<16);
 
   // Update slope table, add slope for arc start
   if (startAngle <= 90) {
@@ -2657,7 +2658,7 @@ void TFT_eSPI::drawArc(int32_t x, int32_t y, int32_t r, int32_t ir,
   fabssin  = fabsf(sinf(endAngle * deg2rad));
 
   // U16.16 slope of arc end
-  slope   = (uint32_t)((fabscos/(fabssin + minDivisor)) * (float)(1<<16));
+  slope   = (uint32_t)((fabscos/(fabssin + minDivisor)) * (float)(1UL<<16));
 
   // Work out which quadrants will need to be drawn and add slope for arc end
   if (endAngle <= 90) {
@@ -2693,45 +2694,39 @@ void TFT_eSPI::drawArc(int32_t x, int32_t y, int32_t r, int32_t ir,
 
       // If in outer zone calculate alpha
       if (hyp > r2) {
-        //alpha = (uint8_t)((rf - sqrtf(hyp)) * 255);
         alpha = ~sqrt_fraction(hyp); // Outer AA zone
       }
       // If within arc fill zone, get line start and lengths for each quadrant
       else if (hyp >= r3) {
-        do {
-          // Calculate U16.16 slope
-          slope = ((r - cy) << 16)/(r - cx);
-          if (slope <= startSlope[0] && slope >= endSlope[0]) { // slope hi -> lo
-            xst[0] = cx; // Bottom left line end
-            len[0]++;
-          }
-          if (slope >= startSlope[1] && slope <= endSlope[1]) { // slope lo -> hi
-            xst[1] = cx; // Top left line end
-            len[1]++;
-          }
-          if (slope <= startSlope[2] && slope >= endSlope[2]) { // slope hi -> lo
-            xst[2] = cx; // Bottom right line start
-            len[2]++;
-          }
-          if (slope <= endSlope[3] && slope >= startSlope[3]) { // slope lo -> hi
-            xst[3] = cx; // Top right line start
-            len[3]++;
-          }
-          cx++;
-        } while ((r - cx) * (r - cx) + dy2 >= r3 && cx < r);
-        cx--;
+        // Calculate U16.16 slope
+        slope = ((r - cy) << 16)/(r - cx);
+        if (slope <= startSlope[0] && slope >= endSlope[0]) { // slope hi -> lo
+          xst[0] = cx; // Bottom left line end
+          len[0]++;
+        }
+        if (slope >= startSlope[1] && slope <= endSlope[1]) { // slope lo -> hi
+          xst[1] = cx; // Top left line end
+          len[1]++;
+        }
+        if (slope <= startSlope[2] && slope >= endSlope[2]) { // slope hi -> lo
+          xst[2] = cx; // Bottom right line start
+          len[2]++;
+        }
+        if (slope <= endSlope[3] && slope >= startSlope[3]) { // slope lo -> hi
+          xst[3] = cx; // Top right line start
+          len[3]++;
+        }
         continue; // Next x
       }
       else {
         if (hyp <= r4) break;  // Skip inner pixels
-        //alpha = (uint8_t)((sqrtf(hyp) - irf) * 255.0);
         alpha = sqrt_fraction(hyp); // Inner AA zone
       }
 
       if (alpha < 16) continue;  // Skip low alpha pixels
 
       // If background is read it must be done in each quadrant
-      uint16_t pcol = alphaBlend(alpha, fg_color, bg_color);
+      uint16_t pcol = fastBlend(alpha, fg_color, bg_color);
       // Check if an AA pixels need to be drawn
       slope = ((r - cy)<<16)/(r - cx);
       if (slope <= startSlope[0] && slope >= endSlope[0]) // BL
@@ -2796,19 +2791,12 @@ void TFT_eSPI::fillSmoothCircle(int32_t x, int32_t y, int32_t r, rgb_t color, rg
       int32_t hyp2 = (r - cx) * (r - cx) + dy2;
       if (hyp2 <= r1) break;
       if (hyp2 >= r2) continue;
-//*
+
       uint8_t alpha = ~sqrt_fraction(hyp2);
       if (alpha > 246) break;
       xs = cx;
       if (alpha < 9) continue;
-      //*/
-/*
-      float alphaf = (float)r - sqrtf(hyp2);
-      if (alphaf > HiAlphaTheshold) break;
-      xs = cx;
-      if (alphaf < LoAlphaTheshold) continue;
-      uint8_t alpha = alphaf * 255;
-//*/
+
       if (bg_color == 0x00FFFFFF) {
         drawAlphaPixel(x + cx - r, y + cy - r, color, alpha, bg_color);
         drawAlphaPixel(x - cx + r, y + cy - r, color, alpha, bg_color);
@@ -2848,7 +2836,7 @@ void TFT_eSPI::drawSmoothRoundRect(int32_t x, int32_t y, int32_t r, int32_t ir, 
 {
   if (_vpOoB) return;
   if (r < ir) transpose(r, ir); // Required that r > ir
-  if (r <= 0 || ir < 0) return;  // Invalid
+  if (r <= 0 || ir < 0) return; // Invalid
 
   w -= 2*r;
   h -= 2*r;
@@ -2860,13 +2848,7 @@ void TFT_eSPI::drawSmoothRoundRect(int32_t x, int32_t y, int32_t r, int32_t ir, 
 
   x += r;
   y += r;
-/*
-  float alphaGain = 1.0;
-  if (w != 0 || h != 0) {
-    if (r - ir < 2) alphaGain = 1.5; // Boost brightness for thin lines
-    if (r - ir < 1) alphaGain = 1.7;
-  }
-*/
+
   uint16_t t = r - ir + 1;
   int32_t xs = 0;
   int32_t cx = 0;
@@ -2879,8 +2861,6 @@ void TFT_eSPI::drawSmoothRoundRect(int32_t x, int32_t y, int32_t r, int32_t ir, 
   ir--;
   int32_t r4 = ir * ir; // Inner AA zone radius^2
 
-  //float irf = ir;
-  //float rf  = r;
   uint8_t alpha = 0;
 
   // Scan top left quadrant x y r ir fg_color  bg_color
@@ -2901,8 +2881,7 @@ void TFT_eSPI::drawSmoothRoundRect(int32_t x, int32_t y, int32_t r, int32_t ir, 
 
       // If in outer zone calculate alpha
       if (hyp > r2) {
-        alpha = ~sqrt_fraction(hyp);
-        //alpha = (uint8_t)((rf - sqrtf(hyp)) * 255); // Outer AA zone
+        alpha = ~sqrt_fraction(hyp); // Outer AA zone
       }
       // If within arc fill zone, get line lengths for each quadrant
       else if (hyp >= r3) {
@@ -2912,14 +2891,13 @@ void TFT_eSPI::drawSmoothRoundRect(int32_t x, int32_t y, int32_t r, int32_t ir, 
       }
       else {
         if (hyp <= r4) break;  // Skip inner pixels
-        //alpha = (uint8_t)((sqrtf(hyp) - irf) * 255); // Inner AA zone
-        alpha = sqrt_fraction(hyp);
+        alpha = sqrt_fraction(hyp); // Inner AA zone
       }
 
       if (alpha < 16) continue;  // Skip low alpha pixels
 
       // If background is read it must be done in each quadrant - TODO
-      uint16_t pcol = alphaBlend(alpha, fg_color, bg_color);
+      uint16_t pcol = fastBlend(alpha, fg_color, bg_color);
       if (quadrants & 0x8) drawPixel(x + cx - r, y - cy + r + h, pcol);     // BL
       if (quadrants & 0x1) drawPixel(x + cx - r, y + cy - r, pcol);         // TL
       if (quadrants & 0x2) drawPixel(x - cx + r + w, y + cy - r, pcol);     // TR
@@ -2984,13 +2962,7 @@ void TFT_eSPI::fillSmoothRoundRect(int32_t x, int32_t y, int32_t w, int32_t h, i
       if (alpha > 246) break;
       xs = cx;
       if (alpha < 9) continue;
-/*
-      float alphaf = (float)r - sqrtf(hyp2);
-      if (alphaf > HiAlphaTheshold) break;
-      xs = cx;
-      if (alphaf < LoAlphaTheshold) continue;
-      uint8_t alpha = alphaf * 255;
-*/
+
       drawAlphaPixel(x + cx - r, y + cy - r, color, alpha, bg_color);
       drawAlphaPixel(x - cx + r + w, y + cy - r, color, alpha, bg_color);
       drawAlphaPixel(x - cx + r + w, y - cy + r + h, color, alpha, bg_color);
@@ -3068,16 +3040,26 @@ void TFT_eSPI::drawWedgeLine(float ax, float ay, float bx, float by, float ar, f
       // Track edge to minimise calculations
       if (!endX) { endX = true; xs = xp; }
       if (alpha > HiAlphaTheshold) {
-        if (swin) { setWindow(xp, yp, width()-1, yp); swin = false; }
-        pushColor(fg_color);
+        #ifdef GC9A01_DRIVER
+          drawPixel(xp, yp, fg_color);
+        #else
+          if (swin) { setWindow(xp, yp, x1, yp); swin = false; }
+          pushColor(fg_color);
+        #endif
         continue;
       }
       //Blend color with background and plot
       if (bg_color == 0x00FFFFFF) {
         bg = readPixel(xp, yp); swin = true;
       }
-      if (swin) { setWindow(xp, yp, width()-1, yp); swin = false; }
-      pushColor(alphaBlend((uint8_t)(alpha * PixelAlphaGain), fg_color, bg));
+      #ifdef GC9A01_DRIVER
+        uint16_t pcol = fastBlend((uint8_t)(alpha * PixelAlphaGain), fg_color, bg);
+        drawPixel(xp, yp, pcol);
+        swin = swin;
+      #else
+        if (swin) { setWindow(xp, yp, x1, yp); swin = false; }
+        pushColor(fastBlend((uint8_t)(alpha * PixelAlphaGain), fg_color, bg));
+      #endif
     }
   }
 
@@ -3096,16 +3078,26 @@ void TFT_eSPI::drawWedgeLine(float ax, float ay, float bx, float by, float ar, f
       // Track line boundary
       if (!endX) { endX = true; xs = xp; }
       if (alpha > HiAlphaTheshold) {
-        if (swin) { setWindow(xp, yp, width()-1, yp); swin = false; }
-        pushColor(fg_color);
+        #ifdef GC9A01_DRIVER
+          drawPixel(xp, yp, fg_color);
+        #else
+          if (swin) { setWindow(xp, yp, x1, yp); swin = false; }
+          pushColor(fg_color);
+        #endif
         continue;
       }
       //Blend colour with background and plot
       if (bg_color == 0x00FFFFFF) {
         bg = readPixel(xp, yp); swin = true;
       }
-      if (swin) { setWindow(xp, yp, width()-1, yp); swin = false; }
-      pushColor(alphaBlend((uint8_t)(alpha * PixelAlphaGain), fg_color, bg));
+      #ifdef GC9A01_DRIVER
+        uint16_t pcol = fastBlend((uint8_t)(alpha * PixelAlphaGain), fg_color, bg);
+        drawPixel(xp, yp, pcol);
+        swin = swin;
+      #else
+        if (swin) { setWindow(xp, yp, x1, yp); swin = false; }
+        pushColor(fastBlend((uint8_t)(alpha * PixelAlphaGain), fg_color, bg));
+      #endif
     }
   }
 
@@ -3258,7 +3250,7 @@ void TFT_eSPI::fillRectVGradient(int16_t x, int16_t y, int16_t w, int16_t h, rgb
   while (h--) {
     drawFastHLine(x, y++, w, color);
     alpha += delta;
-    color = alphaBlend((uint8_t)alpha, color1, color2);
+    color = fastBlend((uint8_t)alpha, color1, color2);
   }
 
   end_nin_write();
@@ -3296,7 +3288,7 @@ void TFT_eSPI::fillRectHGradient(int16_t x, int16_t y, int16_t w, int16_t h, rgb
   while (w--) {
     drawFastVLine(x++, y, h, color);
     alpha += delta;
-    color = alphaBlend((uint8_t)alpha, color1, color2);
+    color = fastBlend((uint8_t)alpha, color1, color2);
   }
 
   end_nin_write();
@@ -3305,7 +3297,7 @@ void TFT_eSPI::fillRectHGradient(int16_t x, int16_t y, int16_t w, int16_t h, rgb
 
 /***************************************************************************************
 ** Function name:           color565
-** Description:             convert three 8 bit RGB levels to a 16 bit colour value
+** Description:             convert three 8-bit RGB levels to a 16-bit colour value
 ***************************************************************************************/
 /*
 uint16_t TFT_eSPI::color565(uint8_t r, uint8_t g, uint8_t b)
@@ -3316,7 +3308,7 @@ uint16_t TFT_eSPI::color565(uint8_t r, uint8_t g, uint8_t b)
 
 /***************************************************************************************
 ** Function name:           color16to8
-** Description:             convert 16 bit colour to an 8 bit 332 RGB colour value
+** Description:             convert 16-bit colour to an 8-bit 332 RGB colour value
 ***************************************************************************************/
 /*
 uint8_t TFT_eSPI::color16to8(uint16_t c)
@@ -3327,12 +3319,12 @@ uint8_t TFT_eSPI::color16to8(uint16_t c)
 
 /***************************************************************************************
 ** Function name:           color8to16
-** Description:             convert 8 bit colour to a 16 bit 565 colour value
+** Description:             convert 8-bit colour to a 16-bit 565 colour value
 ***************************************************************************************/
 /*
 uint16_t TFT_eSPI::color8to16(uint8_t color)
 {
-  uint8_t  blue[] = {0, 11, 21, 31}; // blue 2 to 5 bit colour lookup table
+  uint8_t  blue[] = {0, 11, 21, 31}; // blue 2 to 5-bit colour lookup table
   uint16_t color16 = 0;
 
   //        =====Green=====     ===============Red==============
@@ -3345,7 +3337,7 @@ uint16_t TFT_eSPI::color8to16(uint8_t color)
 */
 /***************************************************************************************
 ** Function name:           color16to24
-** Description:             convert 16 bit colour to a 24 bit 888 colour value
+** Description:             convert 16-bit colour to a 24-bit 888 colour value
 ***************************************************************************************/
 rgb_t TFT_eSPI::color16to24(uint16_t color565)
 {
@@ -3361,7 +3353,7 @@ rgb_t TFT_eSPI::color16to24(uint16_t color565)
 
 /***************************************************************************************
 ** Function name:           color24to16
-** Description:             convert 24 bit colour to a 16 bit 565 colour value
+** Description:             convert 24-bit colour to a 16-bit 565 colour value
 ***************************************************************************************/
 uint16_t TFT_eSPI::color24to16(rgb_t color888)
 {
@@ -3372,6 +3364,10 @@ uint16_t TFT_eSPI::color24to16(rgb_t color888)
   return (r | g | b);
 }
 
+/***************************************************************************************
+** Function name:           color24to16
+** Description:             TFT_eSPI_light
+***************************************************************************************/
 uint16_t color24to16(rgb_t color888)
 {
   uint16_t r = (color888 >> 8) & 0xF800;
@@ -3438,26 +3434,26 @@ uint16_t TFT_eSPI::decodeUTF8(uint8_t c)
 {
   if (!_utf8) return c;
 
-  // 7 bit Unicode Code Point
+  // 7-bit Unicode Code Point
   if ((c & 0x80) == 0x00) {
     decoderState = 0;
     return c;
   }
 
   if (decoderState == 0) {
-    // 11 bit Unicode Code Point
+    // 11-bit Unicode Code Point
     if ((c & 0xE0) == 0xC0) {
       decoderBuffer = ((c & 0x1F)<<6);
       decoderState = 1;
       return 0;
     }
-    // 16 bit Unicode Code Point
+    // 16-bit Unicode Code Point
     if ((c & 0xF0) == 0xE0) {
       decoderBuffer = ((c & 0x0F)<<12);
       decoderState = 2;
       return 0;
     }
-    // 21 bit Unicode  Code Point not supported so fall-back to extended ASCII
+    // 21-bit Unicode Code Point not supported so fall-back to extended ASCII
     // if ((c & 0xF8) == 0xF0) return c;
   }
   else {
@@ -3490,21 +3486,24 @@ uint16_t TFT_eSPI::decodeUTF8(uint8_t *buf, uint16_t *index, uint16_t remaining)
 
   if (!_utf8) return c;
 
-  // 7 bit Unicode
+  // 7-bit Unicode
   if ((c & 0x80) == 0x00) return c;
 
-  // 11 bit Unicode
+  // 11-bit Unicode
   if (((c & 0xE0) == 0xC0) && (remaining > 1))
     return ((c & 0x1F)<<6) | (buf[(*index)++]&0x3F);
 
-  // 16 bit Unicode
+  // 16-bit Unicode
   if (((c & 0xF0) == 0xE0) && (remaining > 2)) {
     c = ((c & 0x0F)<<12) | ((buf[(*index)++]&0x3F)<<6);
     return  c | ((buf[(*index)++]&0x3F));
   }
 
-  // 21 bit Unicode not supported so fall-back to extended ASCII
-  // if ((c & 0xF8) == 0xF0) return c;
+  // 21-bit Unicode not supported so fall-back to extended ASCII
+  // if (((c & 0xF8) == 0xF0) && (remaining > 3)) {
+  // c = ((c & 0x07) << 18) | ((buf[(*index)++] & 0x03F) << 12);
+  // c |= ((buf[(*index)++] & 0x3F) << 6);
+  // return c | ((buf[(*index)++] & 0x3F));
 
   return c; // fall-back to extended ASCII
 }
@@ -3517,10 +3516,10 @@ uint16_t TFT_eSPI::decodeUTF8(uint8_t *buf, uint16_t *index, uint16_t remaining)
 /*
 inline uint16_t TFT_eSPI::alphaBlend(uint8_t alpha, uint16_t fgc, uint16_t bgc)
 {
-  // Split out and blend 5 bit red and blue channels
+  // Split out and blend 5-bit red and blue channels
   uint32_t rxb = bgc & 0xF81F;
   rxb += ((fgc & 0xF81F) - rxb) * (alpha >> 2) >> 6;
-  // Split out and blend 6 bit green channel
+  // Split out and blend 6-bit green channel
   uint32_t xgx = bgc & 0x07E0;
   xgx += ((fgc & 0x07E0) - xgx) * alpha >> 8;
   // Recombine channels
@@ -3561,11 +3560,10 @@ rgb_t TFT_eSPI::alphaBlend(uint8_t alpha, rgb_t fgc, rgb_t bgc, uint8_t dither)
   uint32_t rxx = bgc & 0xFF0000;
   rxx += ((fgc & 0xFF0000) - rxx) * alpha >> 8;
   uint32_t xgx = bgc & 0x00FF00;
-  xgx += ((fgc & 0xFF0000) - xgx) * alpha >> 8;
+  xgx += ((fgc & 0x00FF00) - xgx) * alpha >> 8;
   uint32_t xxb = bgc & 0x0000FF;
-  xxb += ((fgc & 0xFF0000) - xxb) * alpha >> 8;
-// TODO, use RGB
-  return 0xFF000000 | (rxx & 0xFF0000) | (xgx & 0x00FF00) | (xxb & 0x0000FF);
+  xxb += ((fgc & 0x0000FF) - xxb) * alpha >> 8;
+  return (rxx & 0xFF0000) | (xgx & 0x00FF00) | (xxb & 0x0000FF);
 }
 
 /***************************************************************************************
@@ -3612,7 +3610,6 @@ size_t TFT_eSPI::write(uint8_t utf8)
 #endif
 
   if (uniCode == '\n') uniCode+=22; // Make it a valid space character to stop errors
-  else if (uniCode < 32) return 1;
 
   uint16_t cwidth = 0;
   uint16_t cheight = 0;
@@ -3631,7 +3628,7 @@ size_t TFT_eSPI::write(uint8_t utf8)
 
 #ifdef LOAD_FONT2
   if (textfont == 2) {
-    if (uniCode > 127) return 1;
+    if (uniCode < 32 || uniCode > 127) return 1;
 
     cwidth = pgm_read_byte(widtbl_f16 + uniCode-32);
     cheight = chr_hgt_f16;
@@ -3647,7 +3644,7 @@ size_t TFT_eSPI::write(uint8_t utf8)
 #ifdef LOAD_RLE
   {
     if ((textfont>2) && (textfont<9)) {
-      if (uniCode > 127) return 1;
+      if (uniCode < 32 || uniCode > 127) return 1;
       // Uses the fontinfo struct array to avoid lots of 'if' or 'switch' statements
       cwidth = pgm_read_byte( (uint8_t *)pgm_read_dword( &(fontdata[textfont].widthtbl ) ) + uniCode-32 );
       cheight= pgm_read_byte( &fontdata[textfont].height );
@@ -3899,7 +3896,7 @@ int16_t TFT_eSPI::drawChar(uint16_t uniCode, int32_t x, int32_t y, uint8_t font)
 
 //      uint8_t tnp = 0; // Temporary copy of np for while loop
       uint8_t ts = textsize - 1; // Temporary copy of textsize
-      // 16 bit pixel count so maximum font size is equivalent to 180x180 pixels in area
+      // 16-bit pixel count so maximum font size is equivalent to 180x180 pixels in area
       // w is total number of pixels to plot to fill character block
       while (pc < w) {
         line = pgm_read_byte((uint8_t *)flash_address);
@@ -4463,6 +4460,7 @@ void TFT_eSPI::setFreeFont(const GFXfont *f)
 void TFT_eSPI::setTextFont(uint8_t f)
 {
   textfont = (f > 0) ? f : 1; // Don't allow font 0
+  textfont = (f > 8) ? 1 : f; // Don't allow font > 8
   gfxFont = NULL;
 }
 
@@ -4488,6 +4486,7 @@ void TFT_eSPI::setFreeFont(uint8_t font)
 void TFT_eSPI::setTextFont(uint8_t f)
 {
   textfont = (f > 0) ? f : 1; // Don't allow font 0
+  textfont = (f > 8) ? 1 : f; // Don't allow font > 8
 }
 #endif
 

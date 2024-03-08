@@ -27,10 +27,10 @@
   Last review/edit by Bodmer: 04/02/22
  ****************************************************/
 
-// Stop fonts etc being loaded multiple times
+// Stop fonts etc. being loaded multiple times
 #pragma once
 
-#define TFT_ESPI_VERSION "2.5.0"
+#define TFT_ESPI_VERSION "2.5.43"
 
 // Bit level feature flags
 // Bit 0 set: viewport capability
@@ -230,14 +230,14 @@ const PROGMEM fontinfo fontdata [] = {
 #define TFT_SKYBLUE     SKYBLUE
 #define TFT_VIOLET      VIOLET
 
-// Next is a special 16 bit colour value that encodes to 8 bits
-// and will then decode back to the same 16 bit value.
-// Convenient for 8 bit and 16 bit transparent sprites.
+// Next is a special 16-bit colour value that encodes to 8 bits
+// and will then decode back to the same 16-bit value.
+// Convenient for 8-bit and 16-bit transparent sprites.
 #define TFT_TRANSPARENT 0x0120 // This is actually a dark green
 
 uint16_t color24to16(rgb_t color888);
 
-// Default palette for 4 bit colour sprites
+// Default palette for 4-bit colour sprites
 static const uint16_t default_4bit_palette[] PROGMEM = {
   color24to16(TFT_BLACK),    //  0  ^
   color24to16(TFT_BROWN),    //  1  |
@@ -261,7 +261,7 @@ static const uint16_t default_4bit_palette[] PROGMEM = {
 **                         Section 7: Diagnostic support
 ***************************************************************************************/
 // #define TFT_eSPI_DEBUG     // Switch on debug support serial messages  (not used yet)
-// #define TFT_eSPI_FNx_DEBUG // Switch on debug support for function _dwidth, _dheight"x" (not used yet)
+// #define TFT_eSPI_FNx_DEBUG // Switch on debug support for function "x" (not used yet)
 
 // This structure allows sketches to retrieve the user setup parameters at runtime
 // by calling getSetup(), zero impact on code size unless used, mainly for diagnostics
@@ -273,7 +273,9 @@ uint32_t setup_id;   // ID available to use in a user setup
 int32_t esp;         // Processor code
 uint8_t trans;       // SPI transaction support
 uint8_t serial;      // Serial (SPI) or parallel
+#ifndef GENERIC_PROCESSOR
 uint8_t  port;       // SPI port
+#endif
 uint8_t overlap;     // ESP8266 overlap mode
 uint8_t interface;   // Interface type
 
@@ -493,7 +495,7 @@ class TFT_eSPI : public SnakeStamp { friend class TFT_eSprite; // Sprite class h
            // FLASH version
   void     pushImage(int32_t x, int32_t y, int32_t w, int32_t h, const uint8_t *data, bool bpp8,  uint16_t *cmap = nullptr);
 
-           // Render a 16 bit colour image with a 1bpp mask
+           // Render a 16-bit colour image with a 1bpp mask
   void     pushMaskedImage(int32_t x, int32_t y, int32_t w, int32_t h, uint16_t *img, uint8_t *mask);
 
 
@@ -519,7 +521,7 @@ class TFT_eSPI : public SnakeStamp { friend class TFT_eSprite; // Sprite class h
            drawRightString(const String& string, int32_t x, int32_t y, uint8_t font); // Deprecated, use setTextDatum() and drawString()
 
 
-  // Text rendering and font handling support funtions
+  // Text rendering and font handling support functions
   void     setCursor(int16_t x, int16_t y),                 // Set cursor for tft.print()
            setCursor(int16_t x, int16_t y, uint8_t font);   // Set cursor and font number for tft.print()
 
@@ -532,7 +534,7 @@ class TFT_eSPI : public SnakeStamp { friend class TFT_eSprite; // Sprite class h
 
   void     setTextWrap(bool wrapX, bool wrapY = false);     // Turn on/off wrapping of text in TFT width and/or height
 
-  void     setTextDatum(uint8_t datum);                     // Set text datum position (default is top left), see Section 6 above
+  void     setTextDatum(uint8_t datum);                     // Set text datum position (default is top left), see Section 5 above
   uint8_t  getTextDatum(void);
 
   void     setTextPadding(uint16_t x_width);                // Set text padding (background blanking/over-write) width in pixels
@@ -550,8 +552,8 @@ class TFT_eSPI : public SnakeStamp { friend class TFT_eSprite; // Sprite class h
            textWidth(const char *string),                   // Returns pixel width of string in current font
            textWidth(const String& string, uint8_t font),   // As above for String types
            textWidth(const String& string),
-           fontHeight(int16_t font),                        // Returns pixel height of string in specified font
-           fontHeight(void);                                // Returns pixel width of string in current font
+           fontHeight(uint8_t font),                        // Returns pixel height of specified font
+           fontHeight(void);                                // Returns pixel height of current font
 
            // Used by library and Smooth font class to extract Unicode point codes from a UTF8 encoded string
   uint16_t decodeUTF8(uint8_t *buf, uint16_t *index, uint16_t remaining),
@@ -568,25 +570,25 @@ class TFT_eSPI : public SnakeStamp { friend class TFT_eSprite; // Sprite class h
 
 
   // Colour conversion
-           // Convert 8 bit red, green and blue to 16 bits
+           // Convert 8-bit red, green and blue to 16 bits
 //  uint16_t color565(uint8_t red, uint8_t green, uint8_t blue);
 
-           // Convert 8 bit colour to 16 bits
+           // Convert 8-bit colour to 16 bits
 //  uint16_t color8to16(uint8_t color332);
-           // Convert 16 bit colour to 8 bits
+           // Convert 16-bit colour to 8 bits
 //  uint8_t  color16to8(uint16_t color565);
 
-           // Convert 16 bit colour to/from 24 bit, R+G+B concatenated into LS 24 bits
+           // Convert 16-bit colour to/from 24-bit, R+G+B concatenated into LS 24 bits
   rgb_t    color16to24(uint16_t color565);
   uint16_t color24to16(rgb_t color888);
 
            // Alpha blend 2 colours, see generic "alphaBlend_Test" example
            // alpha =   0 = 100% background colour
            // alpha = 255 = 100% foreground colour
-// inline uint16_t alphaBlend(uint8_t alpha, uint16_t fgc, uint16_t bgc);
-           // 16 bit colour alphaBlend with alpha dither (dither reduces colour banding)
+//  uint16_t alphaBlend(uint8_t alpha, uint16_t fgc, uint16_t bgc);
+           // 16-bit colour alphaBlend with alpha dither (dither reduces colour banding)
 //  uint16_t alphaBlend(uint8_t alpha, uint16_t fgc, uint16_t bgc, uint8_t dither);
-           // 24 bit colour alphaBlend with optional alpha dither
+           // 24-bit colour alphaBlend with optional alpha dither
   rgb_t    alphaBlend(uint8_t alpha, rgb_t fgc, rgb_t bgc, uint8_t dither = 0);
 
   // Bare metal functions
@@ -678,7 +680,7 @@ class TFT_eSPI : public SnakeStamp { friend class TFT_eSprite; // Sprite class h
   bool     _swapBytes; // Swap the byte order for TFT pushImage()
 
                        // User sketch manages these via set/getAttribute()
-  bool     _cp437;        // If set, use correct CP437 charset (default is ON)
+  bool     _cp437;        // If set, use correct CP437 charset (default is OFF)
   bool     _utf8;         // If set, use UTF-8 decoder in print stream 'write()' function (default ON)
   bool     _psram_enable; // Enable PSRAM use for library functions (TBD) and Sprites
 
@@ -708,6 +710,20 @@ class TFT_eSPI : public SnakeStamp { friend class TFT_eSprite; // Sprite class h
 // Swap any type
 template <typename T> static inline void
 transpose(T& a, T& b) { T t = a; a = b; b = t; }
+
+// Fast alphaBlend
+template <typename A, typename F, typename B> static inline uint16_t
+fastBlend(A alpha, F fgc, B bgc)
+{
+  // Split out and blend 5-bit red and blue channels
+  uint32_t rxb = bgc & 0xF81F;
+  rxb += ((fgc & 0xF81F) - rxb) * (alpha >> 2) >> 6;
+  // Split out and blend 6-bit green channel
+  uint32_t xgx = bgc & 0x07E0;
+  xgx += ((fgc & 0x07E0) - xgx) * alpha >> 8;
+  // Recombine channels
+  return (rxb & 0xF81F) | (xgx & 0x07E0);
+}
 
 /***************************************************************************************
 **                         Section 10: Additional extension classes

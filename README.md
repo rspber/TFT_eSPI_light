@@ -30,17 +30,12 @@ and is equivalent to the appropriate TFT_eSPI version.
 2. Already implemented protocols and drivers are provided by TFT_Stack from tsdesktop,
    TFT_Stack consists of directories: gfx, tft, and protocols, setup and env are also part of it.
 
-3. Parallel 8-bit: PIO write, GPIO read/write, SPI: read/write, PIO read/write are available.
-
-4. Read and write protocols are separated, so it is possible to write by PIO and read
+3. Read and write protocols are separated, so it is possible to write by PIO and read
    and touch by SPI on the same rail, this is done by automatic protocol switching.
    Currently it works in Arduino only.
 
-5. GFXFF font is unavaiable due to collision with the GFXGlyph type redefined in tsdesktop,
+4. GFXFF font is unavaiable due to collision with the GFXGlyph type redefined in tsdesktop,
    but is available by drawChar and drawText from SCREEN class available by inhertance.
-
-6. Currently, TFT_eSPI_light runs in Arduino and pico-sdk on RP2040,
-   Arduino: pic32, Arduino: esp32 in not optimized yet (slower) SPI.
 
 ## How to begin
 

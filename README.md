@@ -34,7 +34,9 @@ and is equivalent to the appropriate TFT_eSPI version.
    and touch by SPI on the same rail, this is done by automatic protocol switching.
    Currently it works in Arduino only.
 
-4. GFXFF font is unavaiable due to collision with the GFXGlyph type redefined in tsdesktop,
+4. Available protocols: see Setup('s).h in setup's subdirectories.
+
+5. GFXFF font is unavaiable due to collision with the GFXGlyph type redefined in tsdesktop,
    but is available by drawChar and drawText from SCREEN class available by inhertance.
 
 ## How to begin

@@ -47,11 +47,9 @@ void TFT_eSPI::pushPixels(const uint16_t* data, int32_t len)
 #if defined(COLOR_565)
   tft_sendMDTBuffer16((const uint8_t*)data, len);
 #else
-  tft_startWriteColor();
   for (int i = 0; i < len; ++i) {
-    tft_writeMDTColor(rgb(data[i]) & 0xffffff);
+    tft_sendMDTColor(rgb(data[i]) & 0xffffff);
   }
-  tft_endWriteColor();
 #endif
 }
 
@@ -2155,19 +2153,17 @@ void TFT_eSPI::drawChar(int32_t x, int32_t y, uint16_t c, rgb_t color, rgb_t bg,
     for (int8_t i = 0; i < 5; i++ ) column[i] = pgm_read_byte(&font[0] + (c * 5) + i);
     column[5] = 0;
 
-    tft_startWriteColor();
     mdt_t mdt_co = mdt_color(color);
     mdt_t mdt_bg = mdt_color(bg);
 
     for (int8_t j = 0; j < 8; j++) {
       for (int8_t k = 0; k < 5; k++ ) {
-        if (column[k] & mask) {tft_writeMDTColor(mdt_co);}
-        else {tft_writeMDTColor(mdt_bg);}
+        if (column[k] & mask) {tft_sendMDTColor(mdt_co);}
+        else {tft_sendMDTColor(mdt_bg);}
       }
       mask <<= 1;
-      tft_writeMDTColor(mdt_bg);
+      tft_sendMDTColor(mdt_bg);
     }
-    tft_endWriteColor();
 
     end_tft_write();
   }
@@ -2315,9 +2311,7 @@ void TFT_eSPI::pushColor(rgb_t color)
 {
   begin_tft_write();
 
-  tft_startWriteColor();
-  tft_writeMDTColor(mdt_color(color));
-  tft_endWriteColor();
+  tft_sendMDTColor(mdt_color(color));
 
   end_tft_write();
 }
@@ -3851,7 +3845,6 @@ int16_t TFT_eSPI::drawChar(uint16_t uniCode, int32_t x, int32_t y, uint8_t font)
 
       setWindow(xd, yd, xd + width - 1, yd + height - 1);
 
-      tft_startWriteColor();
       mdt_t mdt_textcolor = mdt_color(textcolor);
       mdt_t mdt_textbgcolor = mdt_color(textbgcolor);
 
@@ -3862,15 +3855,14 @@ int16_t TFT_eSPI::drawChar(uint16_t uniCode, int32_t x, int32_t y, uint8_t font)
           line = pgm_read_byte((uint8_t *) (flash_address + w * i + k) );
           mask = 0x80;
           while (mask && pX) {
-            if (line & mask) {tft_writeMDTColor(mdt_textcolor);}
-            else {tft_writeMDTColor(mdt_textbgcolor);}
+            if (line & mask) {tft_sendMDTColor(mdt_textcolor);}
+            else {tft_sendMDTColor(mdt_textbgcolor);}
             pX--;
             mask = mask >> 1;
           }
         }
-        if (pX) {tft_writeMDTColor(mdt_textbgcolor);}
+        if (pX) {tft_sendMDTColor(mdt_textbgcolor);}
       }
-      tft_endWriteColor();
 
       end_tft_write();
     }
@@ -3930,9 +3922,7 @@ int16_t TFT_eSPI::drawChar(uint16_t uniCode, int32_t x, int32_t y, uint8_t font)
               tft_sendMDTColor(mdt_textcolor, np);
             }
             else {
-              tft_startWriteColor();
-              tft_writeMDTColor(mdt_textcolor);
-              tft_endWriteColor();
+              tft_sendMDTColor(mdt_textcolor);
             }
             px += textsize;
 

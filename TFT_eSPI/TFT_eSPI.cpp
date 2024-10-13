@@ -3914,9 +3914,7 @@ int16_t TFT_eSPI::drawChar(uint16_t uniCode, int32_t x, int32_t y, uint8_t font)
 /*
               tnp = np;
               while (tnp--) {
-                tft_startWriteColor();
-                tft_writeMDTColor(mdt_textcolor);
-                tft_endWriteColor();
+                tft_sendMDTColor(mdt_textcolor);
               }
 */
               tft_sendMDTColor(mdt_textcolor, np);

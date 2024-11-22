@@ -10,7 +10,7 @@
 ** Function name:           loadFont
 ** Description:             loads parameters from a font vlw array in memory
 *************************************************************************************x*/
-void TFT_eSPI::loadFont(const uint8_t array[])
+void TFT_CHAR::loadFont(const uint8_t array[])
 {
   if (array == nullptr) return;
   fontPtr = (uint8_t*) array;
@@ -22,7 +22,7 @@ void TFT_eSPI::loadFont(const uint8_t array[])
 ** Function name:           loadFont
 ** Description:             loads parameters from a font vlw file
 *************************************************************************************x*/
-void TFT_eSPI::loadFont(String fontName, fs::FS &ffs)
+void TFT_CHAR::loadFont(String fontName, fs::FS &ffs)
 {
   fontFS = ffs;
   loadFont(fontName, false);
@@ -33,7 +33,7 @@ void TFT_eSPI::loadFont(String fontName, fs::FS &ffs)
 ** Function name:           loadFont
 ** Description:             loads parameters from a font vlw file
 *************************************************************************************x*/
-void TFT_eSPI::loadFont(String fontName, bool flash)
+void TFT_CHAR::loadFont(String fontName, bool flash)
 {
   /*
     The vlw font format does not appear to be documented anywhere, so some reverse
@@ -150,7 +150,7 @@ void TFT_eSPI::loadFont(String fontName, bool flash)
 ** Description:             Get the metrics for each glyph and store in RAM
 *************************************************************************************x*/
 //#define SHOW_ASCENT_DESCENT
-void TFT_eSPI::loadMetrics(void)
+void TFT_CHAR::loadMetrics(void)
 {
   uint32_t headerPtr = 24;
   uint32_t bitmapPtr = headerPtr + gFont.gCount * 28;
@@ -252,7 +252,7 @@ void TFT_eSPI::loadMetrics(void)
 ** Function name:           deleteMetrics
 ** Description:             Delete the old glyph metrics and free up the memory
 *************************************************************************************x*/
-void TFT_eSPI::unloadFont( void )
+void TFT_CHAR::unloadFont( void )
 {
   if (gUnicode)
   {
@@ -310,7 +310,7 @@ void TFT_eSPI::unloadFont( void )
 ** Function name:           readInt32
 ** Description:             Get a 32-bit integer from the font file
 *************************************************************************************x*/
-uint32_t TFT_eSPI::readInt32(void)
+uint32_t TFT_CHAR::readInt32(void)
 {
   uint32_t val = 0;
 
@@ -338,7 +338,7 @@ uint32_t TFT_eSPI::readInt32(void)
 ** Function name:           getUnicodeIndex
 ** Description:             Get the font file index of a Unicode character
 *************************************************************************************x*/
-bool TFT_eSPI::getUnicodeIndex(uint16_t unicode, uint16_t *index)
+bool TFT_CHAR::getUnicodeIndex(uint16_t unicode, uint16_t *index)
 {
   for (uint16_t i = 0; i < gFont.gCount; i++)
   {
@@ -357,7 +357,7 @@ bool TFT_eSPI::getUnicodeIndex(uint16_t unicode, uint16_t *index)
 ** Description:             Write a character to the TFT cursor position
 *************************************************************************************x*/
 // Expects file to be open
-void TFT_eSPI::drawGlyph(uint16_t code)
+void TFT_CHAR::drawGlyph(uint16_t code)
 {
   rgb_t fg = textcolor;
   rgb_t bg = textbgcolor;
@@ -545,7 +545,7 @@ void TFT_eSPI::drawGlyph(uint16_t code)
 ** Function name:           showFont
 ** Description:             Page through all characters in font, td ms between screens
 *************************************************************************************x*/
-void TFT_eSPI::showFont(uint32_t td)
+void TFT_CHAR::showFont(uint32_t td)
 {
   if(!fontLoaded) return;
 
